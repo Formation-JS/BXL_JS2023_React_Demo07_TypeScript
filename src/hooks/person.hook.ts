@@ -2,15 +2,23 @@ import { useCallback, useState } from 'react';
 import { nanoid } from 'nanoid';
 import type { Person, PersonData } from '../types/person';
 
+// Déclaration du typage du Hook
+//? Object renvoyé
 type usePersonListReturnType = {
     people: Person[];
     addPerson: (person: PersonData) => void;
     removePerson: (id: string) => void;
     updatePerson: (id:string, data: PersonData) => void;
 };
-
+//? Hook
 type usePersonListType = (initialData?: Person[]) => usePersonListReturnType;
 
+/**
+ * Hook pour manipuler une liste de personne
+ * Action possible : Ajouter, mettre à jours et supprimer
+ * @param initialData Collection initial de personne
+ * @returns Un objet avec la collection de personne et les méthodes d'action
+ */
 export const usePersonList : usePersonListType = (initialData) => {
 
     const [people, setPeople] = useState<Person[]>(initialData ?? []);

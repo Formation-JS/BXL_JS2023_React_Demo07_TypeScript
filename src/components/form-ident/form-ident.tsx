@@ -14,24 +14,34 @@ type FormIdentProps = {
 // Le composant React
 const FormIdent = ({ onPassData }: FormIdentProps) => {
 
+    //? Génération d'un identifier pour l'accessibilité du formulaire
     const persId: string = useId();
+
+    //? Variable de state synchronisé au formulaire (Composant controllé)
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
+
+    //? Variable référence - Utiliser pour manipuler le focus d'une balise input
     const inputRef = useRef<HTMLInputElement>(null)
 
+    //? Méthode pour traiter le submit
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
         const data: PersonData = { firstName, lastName };
         onPassData(data);
+
         handleReset();
     };
 
+    //? Méthode pour traiter le reset
     const handleReset = () => {
         setFirstName('')
         setLastName('')
         inputRef.current?.focus()
     }
 
+    //? Rendu du composant
     return (
         <form onSubmit={handleSubmit} onReset={handleReset}>
             <div>
@@ -54,6 +64,7 @@ const FormIdent = ({ onPassData }: FormIdentProps) => {
     )
 }
 
+// Valeur par defaut du composant
 FormIdent.defaultProps = {
     onPassData: () => { }
 };

@@ -1,3 +1,5 @@
+// Fichier de déclaration du type "Person"
+
 export type Person = {
     id: string;
     firstName: string;
